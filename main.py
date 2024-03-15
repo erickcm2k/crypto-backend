@@ -26,7 +26,7 @@ def encrypt():
     try:
         key_file = request.files['keyFile'] 
         file_content = request.files['fileContent']
-        file_content_name = request.files['fileContent'].filename
+        
         # Extraer el contenido de los archivos
         file_content_text = file_content.read().decode('utf-8')
         key_file_text = key_file.read().decode('utf-8')
@@ -40,7 +40,7 @@ def encrypt():
 
         # Se retorna un archivo de texto con el mensaje cifrado
         response = Response(encryptedMsg, content_type='text/plain')
-        response.headers.set('Content-Disposition', 'attachment', filename=f'{file_content_name}_C.txt') 
+        response.headers.set('Content-Disposition', 'attachment', filename=f'file.txt') 
         
         return response     
         
@@ -56,7 +56,7 @@ def decrypt():
     try:
         key_file = request.files['keyFile'] 
         file_content = request.files['fileContent']
-            
+
         # Extraer el contenido de los archivos
         file_content_text = file_content.read().decode('utf-8')
         key_file_text = key_file.read().decode('utf-8')
@@ -69,7 +69,7 @@ def decrypt():
 
         # Se retorna un archivo de texto con el mensaje descifrado
         response = Response(decripted_msg, content_type='text/plain')
-        response.headers.set('Content-Disposition', 'attachment', filename='archivo_D.txt')     
+        response.headers.set('Content-Disposition', 'attachment', filename='file.txt')     
         
         return response    
     except:
